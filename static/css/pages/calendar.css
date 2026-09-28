@@ -1,0 +1,26 @@
+.calendar-toolbar {
+  display: flex;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.view-switch { display: flex; flex: 0 0 auto; gap: 0.15rem; }
+.view-switch button { min-width: 42px; padding-inline: 0; font-size: 1.15rem; }
+body[data-calendar-view="compact"] [data-calendar-grid] { grid-template-columns: 1fr; }
+body[data-calendar-view="compact"] .race-card { display: grid; grid-template-columns: 80px minmax(170px, 0.45fr) 1fr; align-items: stretch; }
+body[data-calendar-view="compact"] .race-card__topline { padding: 1rem; align-items: start; flex-direction: column; justify-content: start; gap: 0.5rem; border-right: 1px solid var(--color-border); }
+body[data-calendar-view="compact"] .race-card__track { height: 140px; padding: 1.4rem; }
+body[data-calendar-view="compact"] .race-card__number { display: none; }
+body[data-calendar-view="compact"] .race-card__content { display: grid; padding: 1rem 1.3rem; grid-template-columns: 1.5fr 1fr auto; align-items: center; gap: 1rem; border-top: 0; border-left: 1px solid var(--color-border); }
+body[data-calendar-view="compact"] .race-card__content .eyebrow, body[data-calendar-view="compact"] .race-card h3 { grid-column: 1; min-height: 0; margin: 0; }
+body[data-calendar-view="compact"] .race-card__time { grid-column: 2; grid-row: 1 / 3; margin: 0; border: 0; flex-direction: column; justify-content: center; align-items: start; }
+body[data-calendar-view="compact"] .arrow-link { grid-column: 3; grid-row: 1 / 3; }
+@media (max-width: 720px) {
+  .calendar-toolbar { align-items: stretch; flex-direction: column; }
+  body[data-calendar-view="compact"] .race-card { grid-template-columns: 64px 1fr; }
+  body[data-calendar-view="compact"] .race-card__track { display: none; }
+  body[data-calendar-view="compact"] .race-card__content { grid-template-columns: 1fr; }
+  body[data-calendar-view="compact"] .race-card__time, body[data-calendar-view="compact"] .arrow-link { grid-column: 1; grid-row: auto; }
+}

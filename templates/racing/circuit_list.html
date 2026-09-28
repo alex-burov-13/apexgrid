@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load racing_tags %}
+{% block title %}Трассы {{ season.year }} · ApexGrid{% endblock %}
+{% block body_class %}page-circuits{% endblock %}
+{% block content %}
+  <header class="page-hero shell">
+    <p class="eyebrow">Track atlas · {{ season.year|default:"—" }}</p>
+    <h1>Трассы сезона</h1>
+    <p>От набережных Monaco до скоростных дуг Suzuka — 23 конфигурации сезона.</p>
+  </header>
+  <section class="section shell">
+  <label class="search-field"><span class="sr-only">Найти трассу</span><i aria-hidden="true">⌕</i><input type="search" name="circuit" data-circuit-search placeholder="Название, страна или город" autocomplete="off"></label>
+  <div class="circuit-grid" aria-label="Галерея трасс">
+    {% for circuit in circuits %}
+      <article class="circuit-card panel" data-circuit-card data-search="{{ circuit.name }} {{ circuit.country }} {{ circuit.locality }}">
+        <div class="circuit-card__track">{% include "components/track_svg.html" %}</div>
+        <p class="eyebrow">{{ circuit.country }} · {{ circuit.locality }}</p>
+        <h2>{{ circuit.name }}</h2>
+        <dl>
+          <div><dt>Длина</dt><dd>{{ circuit.length_km|default:"Нет данных" }} км</dd></div>
+          <div><dt>Повороты</dt><dd>{{ circuit.turns|default:"Нет данных" }}</dd></div>
+          <div><dt>Направление</dt><dd>{{ circuit.direction|direction_name }}</dd></div>
+        </dl>
+      </article>
+    {% empty %}{% include "components/empty_state.html" %}{% endfor %}
+  </div><p class="empty-filter" data-circuit-empty hidden>Ничего не найдено. Попробуйте другой запрос.</p></section>
+{% endblock %}

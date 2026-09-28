@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Чемпионат {{ season.year }} · ApexGrid{% endblock %}
+{% block body_class %}page-standings{% endblock %}
+{% block content %}
+  <header class="page-hero shell">
+    <p class="eyebrow">Standings · {{ season.year|default:"—" }}</p>
+    <h1>Чемпионат</h1>
+    <p>Положение пилотов и команд после последнего обновления.</p>
+  </header>
+  <div class="standings-layout shell section">
+  <section class="panel standings-panel" aria-labelledby="drivers-heading">
+    <h2 id="drivers-heading">Пилоты</h2>
+    <div class="table-scroll"><table><thead><tr><th scope="col">Поз.</th><th scope="col">Пилот</th><th scope="col">Команда</th><th scope="col">Очки</th><th scope="col">Победы</th></tr></thead><tbody>{% for item in drivers %}<tr class="standings-row"><td><b>{{ item.position|stringformat:'02d' }}</b></td><td><strong>{{ item.driver.display_name }}</strong><small>{{ item.driver.code }}</small></td><td><span class="team-cell">{% include "components/team_logo.html" with constructor=item.constructor %}<span>{{ item.constructor.name|default:"—" }}</span></span></td><td><b>{{ item.points }}</b></td><td>{{ item.wins }}</td></tr>{% empty %}<tr><td colspan="5">Нет данных</td></tr>{% endfor %}</tbody></table></div>
+  </section>
+  <section class="panel standings-panel" aria-labelledby="constructors-heading">
+    <h2 id="constructors-heading">Команды</h2>
+    <div class="table-scroll"><table><thead><tr><th scope="col">Поз.</th><th scope="col">Команда</th><th scope="col">Очки</th><th scope="col">Победы</th></tr></thead><tbody>{% for item in constructors %}<tr class="standings-row"><td><b>{{ item.position|stringformat:'02d' }}</b></td><td><span class="team-cell">{% include "components/team_logo.html" with constructor=item.constructor %}<span><strong>{{ item.constructor.name }}</strong><small>{{ item.constructor.nationality }}</small></span></span></td><td><b>{{ item.points }}</b></td><td>{{ item.wins }}</td></tr>{% empty %}<tr><td colspan="4">Нет данных</td></tr>{% endfor %}</tbody></table></div>
+  </section>
+  </div>
+{% endblock %}

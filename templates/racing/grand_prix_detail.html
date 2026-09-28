@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load racing_tags %}
+{% block title %}{{ event.name }} · ApexGrid{% endblock %}
+{% block body_class %}page-detail{% endblock %}
+{% block content %}
+  <article class="detail shell">
+    <header class="detail__header">
+      <p class="eyebrow">Раунд {{ event.round_number|stringformat:'02d' }} · {{ event.season.year }}</p>
+      <h1 class="detail__title"><span class="detail__title-main">{{ event.name }}</span></h1>
+      <p class="detail__location"><span class="country-flag" role="img" aria-label="Флаг: {{ event.circuit.country }}">{{ event.circuit.country|country_flag }}</span>{{ event.circuit.locality }} · {{ event.circuit.country }} · {{ event.circuit.name }}</p>
+    </header>
+
+    <section class="track-stage panel" data-track-stage>
+      <div class="track-stage__label"><span>Track blueprint</span><small>Секторы, направление и стартовая линия</small></div>
+      {% include "components/track_blueprint.html" with circuit=event.circuit %}
+    </section>
+
+    <section class="detail-section" aria-labelledby="stats-heading">
+      <h2 id="stats-heading">Характеристики трассы</h2>
+      <dl class="stat-grid">
+        <div><dt>Длина круга</dt><dd>{% if event.circuit.length_km %}{{ event.circuit.length_km }} км{% else %}Нет данных{% endif %}</dd></div>
+        <div><dt>Круги</dt><dd>{{ event.laps|default:"Нет данных" }}</dd></div>
+        <div><dt>Дистанция</dt><dd>{% if event.race_distance_km %}{{ event.race_distance_km }} км{% else %}Нет данных{% endif %}</dd></div>
+        <div><dt>Повороты</dt><dd>{{ event.circuit.turns|default:"Нет данных" }}</dd></div>
+        <div><dt>Рекорд круга</dt><dd>{% if event.circuit.lap_record %}{{ event.circuit.lap_record }} · {{ event.circuit.lap_record_driver }}{% else %}Нет данных{% endif %}</dd></div>
+      </dl>
+      <p class="detail__summary">{{ event.circuit.summary|default:"Нет данных" }}</p>
+    </section>
+
+    <section class="detail-section schedule" aria-labelledby="schedule-heading" data-timezone-regroup>
+      <h2 id="schedule-heading">Расписание уик-энда</h2>
+      <p class="schedule__intro">Сессии идут сверху вниз строго по времени — от первого выезда на трассу до Race.</p>
+      <ol class="schedule-days">
+        {% for day in schedule_days %}
+          <li class="schedule-day" data-schedule-day="{{ day.date|date:'Y-m-d' }}">
+            <header class="schedule-day__header"><span>{{ day.weekday }}</span><strong>{{ day.label }}</strong></header>
+            <ol class="schedule-day__sessions">
+              {% for session in day.sessions %}
+                <li class="panel schedule-session schedule-session--{{ session.session_type }}">
+                  <span class="schedule-session__marker" aria-hidden="true"></span>
+                  <span class="schedule-session__copy"><small>Сессия {{ session.timeline_position|stringformat:'02d' }}</small><strong>{{ session.session_type|session_name }}</strong></span>
+                  {% include "components/session_time.html" with compact=True %}
+                </li>
+              {% endfor %}
+            </ol>
+          </li>
+        {% empty %}<li>Нет данных</li>{% endfor %}
+      </ol>
+    </section>
+
+    <form class="favorite-form" method="post" action="{% url 'preference-favorite' event.pk %}" data-favorite-form>
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <button type="submit" class="button button--ghost" aria-pressed="{{ is_favorite|yesno:'true,false' }}"><span aria-hidden="true">★</span> {% if is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}</button>
+    </form>
+
+    <section class="detail-section results" aria-labelledby="results-heading">
+      <h2 id="results-heading">Результаты Race</h2>
+      {% if event.results.all %}
+        <div class="table-scroll"><table>
+          <thead><tr><th scope="col">Поз.</th><th scope="col">Пилот</th><th scope="col">Команда</th><th scope="col">Очки</th><th scope="col">Время / статус</th></tr></thead>
+          <tbody>{% for result in event.results.all %}<tr><td>{{ result.position|default:"—" }}</td><td>{{ result.driver.display_name }}</td><td><span class="team-cell">{% include "components/team_logo.html" with constructor=result.constructor %}<span>{{ result.constructor.name }}</span></span></td><td>{{ result.points }}</td><td>{{ result.time_text|default:result.gap|default:result.status|default:"Нет данных" }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+      {% else %}<p>Нет данных</p>{% endif %}
+    </section>
+  </article>
+{% endblock %}

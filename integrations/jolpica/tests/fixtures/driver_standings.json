@@ -1,0 +1,36 @@
+{
+  "MRData": {
+    "StandingsTable": {
+      "season": "2026",
+      "StandingsLists": [
+        {
+          "season": "2026",
+          "round": "1",
+          "DriverStandings": [
+            {
+              "position": "1",
+              "positionText": "1",
+              "points": "25",
+              "wins": "1",
+              "Driver": {
+                "driverId": "norris",
+                "permanentNumber": "4",
+                "code": "NOR",
+                "givenName": "Lando",
+                "familyName": "Norris",
+                "nationality": "British"
+              },
+              "Constructors": [
+                {
+                  "constructorId": "mclaren",
+                  "name": "McLaren",
+                  "nationality": "British"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

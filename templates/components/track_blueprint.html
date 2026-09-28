@@ -1,0 +1,39 @@
+{% load racing_tags %}
+<div class="track-blueprint" data-track-blueprint>
+  <svg
+    class="track-blueprint__map"
+    viewBox="{{ circuit.geometry.viewBox|join:' ' }}"
+    role="img"
+    aria-label="Техническая схема трассы {{ circuit.name }}"
+  >
+    <defs>
+      <filter id="track-glow-{{ circuit.pk }}" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+        <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+      <marker id="track-arrow-{{ circuit.pk }}" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z"></path>
+      </marker>
+      <marker id="track-start-{{ circuit.pk }}" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="7" markerHeight="7">
+        <rect width="12" height="12" rx="2"></rect>
+        <path d="M0 0h6v6H0zM6 6h6v6H6z"></path>
+      </marker>
+    </defs>
+    <path class="track-blueprint__bed" d="{{ circuit.geometry.path }}" pathLength="100" vector-effect="non-scaling-stroke"></path>
+    <path class="track-blueprint__sector track-blueprint__sector--one" d="{{ circuit.geometry.path }}" pathLength="100" vector-effect="non-scaling-stroke"></path>
+    <path class="track-blueprint__sector track-blueprint__sector--two" d="{{ circuit.geometry.path }}" pathLength="100" vector-effect="non-scaling-stroke"></path>
+    <path class="track-blueprint__sector track-blueprint__sector--three" d="{{ circuit.geometry.path }}" pathLength="100" vector-effect="non-scaling-stroke"></path>
+    <path class="track-blueprint__direction" d="{{ circuit.geometry.path }}" pathLength="100" marker-mid="url(#track-arrow-{{ circuit.pk }})" marker-start="url(#track-start-{{ circuit.pk }})" vector-effect="non-scaling-stroke"></path>
+  </svg>
+  <div class="track-blueprint__legend" aria-label="Легенда схемы">
+    <span><i class="legend-dot legend-dot--one"></i>Сектор 1</span>
+    <span><i class="legend-dot legend-dot--two"></i>Сектор 2</span>
+    <span><i class="legend-dot legend-dot--three"></i>Сектор 3</span>
+    <span><i class="legend-start"></i>Старт / финиш</span>
+  </div>
+  <dl class="track-blueprint__facts">
+    <div><dt>Направление</dt><dd>{{ circuit.direction|direction_name }}</dd></div>
+    <div><dt>Конфигурация</dt><dd>{{ circuit.turns|default:'—' }} поворотов</dd></div>
+    <div><dt>Круг</dt><dd>{% if circuit.length_km %}{{ circuit.length_km }} км{% else %}—{% endif %}</dd></div>
+  </dl>
+</div>

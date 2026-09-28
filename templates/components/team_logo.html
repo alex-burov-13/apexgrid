@@ -1,0 +1,6 @@
+{% load static racing_tags %}
+{% if constructor %}
+  <span class="team-mark" title="{{ constructor.name }}">
+    <img class="team-logo" src="{% static constructor.external_id|team_logo %}" alt="" aria-hidden="true" width="96" height="36">
+  </span>
+{% endif %}

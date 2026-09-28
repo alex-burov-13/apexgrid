@@ -1,0 +1,15 @@
+{% load racing_tags %}
+<article class="race-card panel{% if compact %} race-card--compact{% endif %}" data-event-card data-round="{{ event.round_number }}" data-sprint="{{ event.is_sprint|yesno:'true,false' }}">
+  <div class="race-card__topline"><span>Раунд {{ event.round_number|stringformat:'02d' }}</span>{% if event.is_sprint %}<span class="tag tag--red">Sprint</span>{% endif %}</div>
+  <div class="race-card__track">{% include "components/track_svg.html" with circuit=event.circuit %}<span class="race-card__number" aria-hidden="true">{{ event.round_number|stringformat:'02d' }}</span></div>
+  <div class="race-card__content">
+    <p class="eyebrow"><span class="country-flag" role="img" aria-label="Флаг: {{ event.circuit.country }}">{{ event.circuit.country|country_flag }}</span>{{ event.circuit.country }} · {{ event.circuit.locality }}</p>
+    <h3>{{ event.name }}</h3>
+    <div class="race-card__time">
+      {% for session in event.sessions.all %}
+        {% if session.session_type == 'race' %}<span>Race</span>{% include "components/session_time.html" %}{% endif %}
+      {% empty %}<span>Нет данных</span>{% endfor %}
+    </div>
+    <a class="arrow-link" href="{% url 'grand-prix-detail' event.season.year event.round_number %}">Открыть этап <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

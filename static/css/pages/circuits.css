@@ -1,0 +1,29 @@
+.search-field {
+  display: flex;
+  max-width: 620px;
+  min-height: 54px;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-surface-soft);
+}
+.search-field:focus-within { border-color: var(--color-cyan); box-shadow: 0 0 0 3px rgba(54, 214, 208, 0.12); }
+.search-field input { width: 100%; min-height: 50px; color: var(--color-text); border: 0; outline: 0; background: transparent; }
+.search-field input::placeholder { color: var(--color-muted); }
+.circuit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.circuit-card { padding: 1.25rem; transition: transform var(--duration), border-color var(--duration); }
+.circuit-card:hover { border-color: rgba(54, 214, 208, 0.4); transform: translateY(-5px); }
+.circuit-card__track { height: 220px; padding: 1.5rem; border-radius: var(--radius-sm); background: radial-gradient(circle, rgba(54, 214, 208, 0.06), transparent 68%); }
+.circuit-card__track .track-map { color: var(--color-cyan); }
+.circuit-card h2 { min-height: 2.1em; margin: 0.6rem 0 1rem; font-size: 1.45rem; }
+.circuit-card dl { display: grid; margin: 0; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.circuit-card dl div { padding-top: 0.8rem; border-top: 1px solid var(--color-border); }
+.circuit-card dl div:last-child { grid-column: 1 / -1; }
+.circuit-card dt { color: var(--color-muted); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.circuit-card dd { margin: 0.2rem 0 0; font-size: 0.86rem; font-weight: 650; }
+@media (max-width: 980px) { .circuit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .circuit-grid { grid-template-columns: 1fr; } }

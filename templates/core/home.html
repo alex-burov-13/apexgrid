@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load racing_tags %}
+{% block title %}ApexGrid — календарь Formula 1{% endblock %}
+{% block body_class %}page-home{% endblock %}
+{% block content %}
+  <section class="hero shell" aria-labelledby="next-race-heading">
+    <div class="hero__copy">
+    <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Formula 1 · сезон {{ season.year|default:"—" }}</p>
+    <h1 id="next-race-heading" aria-label="Следующий Grand Prix"><span>Следующий</span><em>Grand Prix</em></h1>
+    {% if next_event %}
+      <p class="hero__round">Раунд {{ next_event.round_number|stringformat:'02d' }} · {{ next_event.circuit.country }}</p>
+      <h2>{{ next_event.name }}</h2>
+      <p class="hero__location">{{ next_event.circuit.locality }} · {{ next_event.circuit.name }}</p>
+      {% for session in next_event.sessions.all %}
+        {% if session.session_type == 'race' %}
+          <div class="countdown" data-countdown data-target="{{ session.starts_at|date:'c' }}" aria-label="Обратный отсчёт до Race">
+            <p class="countdown__label">Lights out до Race</p>
+            <p class="countdown__value" data-countdown-value>--:--:--:--</p>
+            <p class="countdown__legend">дни <span>·</span> часы <span>·</span> минуты <span>·</span> секунды</p>
+          </div>
+          <p class="hero__race-time">Race · {% include "components/session_time.html" with session=session %}</p>
+        {% endif %}
+      {% endfor %}
+      <a class="button button--primary" href="{% url 'grand-prix-detail' next_event.season.year next_event.round_number %}">Открыть race center <span aria-hidden="true">↗</span></a>
+    {% else %}
+      {% include "components/empty_state.html" with message="Ближайший этап не найден." %}
+    {% endif %}
+    </div>
+    {% if next_event %}<div class="hero__track" data-track-tilt>{% include "components/track_svg.html" with circuit=next_event.circuit %}<span class="hero__ghost-round" aria-hidden="true">{{ next_event.round_number|stringformat:'02d' }}</span></div>{% endif %}
+  </section>
+
+  <section class="section shell" aria-labelledby="season-heading">
+    <div class="section-heading"><div><p class="eyebrow">Все 23 этапа · 2026</p><h2 id="season-heading">Календарь сезона</h2></div><a class="arrow-link" href="{% url 'calendar' %}">Фильтры календаря <span aria-hidden="true">→</span></a></div>
+    <div class="race-grid race-grid--season">{% for event in events %}{% include "components/grand_prix_card.html" with compact=True %}{% empty %}{% include "components/empty_state.html" %}{% endfor %}</div>
+  </section>
+
+  <section class="section shell" aria-labelledby="leaders-heading">
+    <div class="section-heading"><div><p class="eyebrow">Current standings</p><h2 id="leaders-heading">Лидеры чемпионата</h2></div><a class="arrow-link" href="{% url 'standings' %}">Полные таблицы <span aria-hidden="true">→</span></a></div>
+    <div class="leader-grid">
+      <article class="panel leaderboard"><h3>Пилоты</h3><ol>{% for item in driver_standings %}<li><span class="leaderboard__pos">{{ item.position|stringformat:'02d' }}</span>{% include "components/team_logo.html" with constructor=item.constructor %}<span><strong>{{ item.driver.display_name }}</strong><small>{{ item.constructor.name }}</small></span><b>{{ item.points }} <small>PTS</small></b></li>{% empty %}<li>Нет данных</li>{% endfor %}</ol></article>
+      <article class="panel leaderboard"><h3>Команды</h3><ol>{% for item in constructor_standings %}<li><span class="leaderboard__pos">{{ item.position|stringformat:'02d' }}</span>{% include "components/team_logo.html" with constructor=item.constructor %}<span><strong>{{ item.constructor.name }}</strong><small>{{ item.constructor.nationality }}</small></span><b>{{ item.points }} <small>PTS</small></b></li>{% empty %}<li>Нет данных</li>{% endfor %}</ol></article>
+    </div>
+  </section>
+{% endblock %}

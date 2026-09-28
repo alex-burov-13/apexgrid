@@ -1,0 +1,4 @@
+{% load racing_tags %}
+<time datetime="{{ session.starts_at|date:'c' }}" data-utc="{{ session.starts_at|date:'c' }}" data-session-type="{{ session.session_type }}" data-time-format="{% if compact %}compact{% else %}full{% endif %}">
+  {% if compact %}{{ session.starts_at|display_clock:ui_preferences.timezone }}{% else %}{{ session.starts_at|display_time:ui_preferences.timezone }}{% endif %}
+</time>

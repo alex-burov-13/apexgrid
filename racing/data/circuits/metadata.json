@@ -1,0 +1,94 @@
+{
+  "albert_park": {
+    "timezone": "Australia/Melbourne", "length_km": "5.278", "turns": 14, "direction": "clockwise", "laps": 58,
+    "summary": "Быстрый городской автодром вокруг озера Albert Park: плавные связки, короткие зоны торможения и почти непрерывная атака поребриков."
+  },
+  "shanghai": {
+    "timezone": "Asia/Shanghai", "length_km": "5.451", "turns": 16, "direction": "clockwise", "laps": 56,
+    "summary": "Конфигурация в форме китайского иероглифа «шан»: бесконечная первая связка, длинная задняя прямая и тяжёлое торможение перед шпилькой."
+  },
+  "suzuka": {
+    "timezone": "Asia/Tokyo", "length_km": "5.807", "turns": 18, "direction": "clockwise", "laps": 53,
+    "summary": "Легендарная трасса-восьмёрка, где Esses, Degner и 130R проверяют баланс автомобиля и смелость пилота."
+  },
+  "miami": {
+    "timezone": "America/New_York", "length_km": "5.412", "turns": 19, "direction": "counterclockwise", "laps": 57,
+    "summary": "Современная городская трасса вокруг Hard Rock Stadium соединяет скоростные дуги, медленный техничный сектор и три длинные прямые."
+  },
+  "villeneuve": {
+    "timezone": "America/Toronto", "length_km": "4.361", "turns": 14, "direction": "clockwise", "laps": 70,
+    "summary": "Островная трасса stop-and-go знаменита быстрыми шиканами, близкими стенами и беспощадной Wall of Champions."
+  },
+  "monaco": {
+    "timezone": "Europe/Monaco", "length_km": "3.337", "turns": 19, "direction": "clockwise", "laps": 78,
+    "summary": "Самый узнаваемый городской круг Formula 1: Casino, шпилька Fairmont, тоннель и миллиметры до барьеров на каждом секторе."
+  },
+  "catalunya": {
+    "timezone": "Europe/Madrid", "length_km": "4.657", "turns": 14, "direction": "clockwise", "laps": 66,
+    "summary": "Технически сбалансированный Circuit de Barcelona-Catalunya сочетает длинные дуги, перепады нагрузки и важную финальную секцию."
+  },
+  "red_bull_ring": {
+    "timezone": "Europe/Vienna", "length_km": "4.326", "turns": 10, "direction": "clockwise", "laps": 71,
+    "summary": "Короткий и очень быстрый круг в Штирийских Альпах: три жёстких разгона в гору сменяются стремительным спуском."
+  },
+  "silverstone": {
+    "timezone": "Europe/London", "length_km": "5.891", "turns": 18, "direction": "clockwise", "laps": 52,
+    "summary": "Дом британского автоспорта и царство скоростных поворотов: Copse, Maggotts, Becketts и Chapel проходят почти единым движением."
+  },
+  "spa": {
+    "timezone": "Europe/Brussels", "length_km": "7.004", "turns": 19, "direction": "clockwise", "laps": 44,
+    "summary": "Самый длинный круг календаря проходит по холмам Арденн и объединяет Eau Rouge–Raidillon, высокую скорость и переменчивую погоду."
+  },
+  "hungaroring": {
+    "timezone": "Europe/Budapest", "length_km": "4.381", "turns": 14, "direction": "clockwise", "laps": 70,
+    "summary": "Узкая венгерская трасса напоминает картодром: повороты следуют один за другим, а чистый ритм важнее максимальной скорости."
+  },
+  "zandvoort": {
+    "timezone": "Europe/Amsterdam", "length_km": "4.259", "turns": 14, "direction": "clockwise", "laps": 72,
+    "summary": "Компактный приморский автодром среди дюн выделяется профилированными поворотами Hugenholtz и Arie Luyendyk."
+  },
+  "monza": {
+    "timezone": "Europe/Rome", "length_km": "5.793", "turns": 11, "direction": "clockwise", "laps": 53,
+    "summary": "Temple of Speed — минимальная прижимная сила, легендарные Lesmo и Parabolica и почти круг на полностью открытом газу."
+  },
+  "madring": {
+    "timezone": "Europe/Madrid", "length_km": "5.416", "turns": 22, "direction": "clockwise", "laps": 57,
+    "summary": "Новый MADRING объединяет городские улицы и специально построенные секции вокруг IFEMA Madrid, включая длинный профилированный поворот."
+  },
+  "baku": {
+    "timezone": "Asia/Baku", "length_km": "6.003", "turns": 20, "direction": "counterclockwise", "laps": 51,
+    "summary": "Контрастный уличный круг проходит у стен Старого города, а затем выстреливает на одну из самых длинных прямых Formula 1."
+  },
+  "sepang": {
+    "timezone": "Asia/Kuala_Lumpur", "length_km": "5.543", "turns": 15, "direction": "clockwise", "laps": 56,
+    "summary": "Широкий Sepang спроектирован для нескольких траекторий: длинные прямые, затяжные дуги и тропическая погода создают сложную гонку."
+  },
+  "marina_bay": {
+    "timezone": "Asia/Singapore", "length_km": "4.927", "turns": 19, "direction": "counterclockwise", "laps": 62,
+    "summary": "Ночная гонка под тысячами прожекторов: влажность, стены и постоянные разгоны делают Marina Bay испытанием на выносливость."
+  },
+  "americas": {
+    "timezone": "America/Chicago", "length_km": "5.513", "turns": 20, "direction": "counterclockwise", "laps": 56,
+    "summary": "Circuit of the Americas начинается слепым подъёмом к Turn 1, а дальше цитирует лучшие связки Silverstone, Suzuka и Hockenheim."
+  },
+  "rodriguez": {
+    "timezone": "America/Mexico_City", "length_km": "4.304", "turns": 17, "direction": "clockwise", "laps": 71,
+    "summary": "Высота более двух километров меняет аэродинамику и охлаждение, а стадион Foro Sol превращает финальный сектор в арену."
+  },
+  "interlagos": {
+    "timezone": "America/Sao_Paulo", "length_km": "4.309", "turns": 15, "direction": "counterclockwise", "laps": 71,
+    "summary": "Короткий рельефный круг против часовой стрелки славится Senna S, непредсказуемой погодой и драматичными финалами сезона."
+  },
+  "vegas": {
+    "timezone": "America/Los_Angeles", "length_km": "6.201", "turns": 17, "direction": "counterclockwise", "laps": 50,
+    "summary": "Ночной уличный круг проходит по Las Vegas Strip: холодный асфальт, сверхдлинные прямые и тяжёлые зоны торможения."
+  },
+  "losail": {
+    "timezone": "Asia/Qatar", "length_km": "5.419", "turns": 16, "direction": "clockwise", "laps": 57,
+    "summary": "Плавный и быстрый Lusail почти не даёт передышки шинам: большинство средне- и высокоскоростных поворотов следуют непрерывно."
+  },
+  "yas_marina": {
+    "timezone": "Asia/Dubai", "length_km": "5.281", "turns": 16, "direction": "counterclockwise", "laps": 58,
+    "summary": "Сезон традиционно завершается на закате: быстрые обновлённые связки, длинная прямая и огни отеля над трассой Yas Marina."
+  }
+}

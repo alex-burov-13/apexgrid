@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Календарь {{ season.year }} · ApexGrid{% endblock %}
+{% block body_class %}page-calendar{% endblock %}
+{% block content %}
+  <header class="page-hero shell">
+    <p class="eyebrow">Race calendar · {{ season.year|default:"—" }}</p>
+    <h1>Календарь сезона</h1>
+    <p>Все сессии хранятся в UTC и показываются в выбранном часовом поясе.</p>
+  </header>
+  <section class="section shell">
+    <div class="calendar-toolbar panel">
+      <nav class="segmented" aria-label="Фильтры календаря">
+        <button type="button" data-calendar-filter="all" aria-pressed="true">Все</button>
+        <button type="button" data-calendar-filter="completed" aria-pressed="false">Завершённые</button>
+        <button type="button" data-calendar-filter="upcoming" aria-pressed="false">Предстоящие</button>
+        <button type="button" data-calendar-filter="sprint" aria-pressed="false">Sprint</button>
+      </nav>
+      <form class="view-switch" action="{% url 'preference-calendar-view' %}" method="post" data-calendar-view-form>
+        {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><input type="hidden" name="view" value="{{ ui_preferences.calendar_view }}">
+        <button type="submit" name="view" value="cards" data-calendar-view="cards" aria-label="Карточный вид" aria-pressed="{% if ui_preferences.calendar_view == 'cards' %}true{% else %}false{% endif %}">▦</button>
+        <button type="submit" name="view" value="compact" data-calendar-view="compact" aria-label="Компактный вид" aria-pressed="{% if ui_preferences.calendar_view == 'compact' %}true{% else %}false{% endif %}">☷</button>
+      </form>
+    </div>
+    <div class="race-grid" data-calendar-grid>{% for event in events %}{% include "components/grand_prix_card.html" %}{% empty %}{% include "components/empty_state.html" with message="Ни один этап не соответствует фильтру." %}{% endfor %}</div>
+    <p class="empty-filter" data-calendar-empty hidden>По этому фильтру этапов нет.</p>
+  </section>
+{% endblock %}

@@ -1,0 +1,144 @@
+.detail { padding-block: clamp(3rem, 8vw, 7rem); }
+.detail__header { margin-bottom: 2rem; overflow: hidden; }
+.detail__title {
+  max-width: 17ch;
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(2.7rem, 7vw, 6.6rem);
+  line-height: 0.92;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.detail__title-main { display: block; }
+.detail__location { display: flex; align-items: center; color: var(--color-muted); font-size: 1.05rem; }
+
+.track-stage {
+  position: relative;
+  min-height: 660px;
+  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) 8.5rem;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(54,214,208,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54,214,208,.035) 1px, transparent 1px),
+    radial-gradient(circle at 52% 48%, rgba(54,214,208,.11), transparent 42%),
+    #081226;
+  background-size: 32px 32px, 32px 32px, auto, auto;
+}
+.track-stage::before {
+  position: absolute;
+  inset: 11% 8% 15%;
+  content: "";
+  pointer-events: none;
+  border: 1px solid rgba(54,214,208,.13);
+  border-radius: 50%;
+  transform: perspective(900px) rotateX(67deg);
+  box-shadow: inset 0 0 80px rgba(54,214,208,.03);
+}
+.track-stage__label { position: absolute; z-index: 3; top: 1.4rem; left: 1.4rem; display: grid; }
+.track-stage__label span { color: var(--color-cyan); font-size: 0.7rem; font-weight: 760; letter-spacing: 0.13em; text-transform: uppercase; }
+.track-stage__label small { color: var(--color-muted); }
+
+.track-blueprint { position: relative; z-index: 1; width: 100%; height: 100%; min-height: 500px; }
+.track-blueprint__map { width: 100%; height: 440px; overflow: visible; transform: perspective(1200px) rotateX(13deg) rotateZ(-2deg); filter: drop-shadow(18px 24px 15px rgba(0,0,0,.32)); }
+.track-blueprint__map path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.track-blueprint__bed { stroke: rgba(2,6,15,.95); stroke-width: 24; }
+.track-blueprint__sector { stroke-width: 10; }
+.track-blueprint__sector--one { stroke: #ff3045; stroke-dasharray: 32 68; stroke-dashoffset: 0; }
+.track-blueprint__sector--two { stroke: #36d6d0; stroke-dasharray: 32 68; stroke-dashoffset: -32; }
+.track-blueprint__sector--three { stroke: #f5f7fb; stroke-dasharray: 36 64; stroke-dashoffset: -64; }
+.track-blueprint__direction { stroke: rgba(255,255,255,.02); stroke-width: 2; }
+.track-blueprint marker path { fill: var(--color-cyan); stroke: #06101f; stroke-width: 1.5; }
+.track-blueprint marker rect { fill: #f5f7fb; stroke: #06101f; stroke-width: 1.5; }
+.track-blueprint marker[id^="track-start"] path { fill: #06101f; stroke: none; }
+.track-blueprint__legend {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 55%;
+  gap: .65rem 1.2rem;
+  color: var(--color-muted);
+  font-size: .72rem;
+  font-weight: 680;
+  letter-spacing: .03em;
+}
+.track-blueprint__legend span { display: inline-flex; align-items: center; gap: .45rem; }
+.legend-dot { width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 12px currentColor; }
+.legend-dot--one { color: #ff3045; background: #ff3045; }
+.legend-dot--two { color: #36d6d0; background: #36d6d0; }
+.legend-dot--three { color: #f5f7fb; background: #f5f7fb; }
+.legend-start { width: 12px; height: 12px; border: 2px solid #fff; background: linear-gradient(45deg, #fff 25%, #07101e 25% 50%, #fff 50% 75%, #07101e 75%); }
+.track-blueprint__facts {
+  position: absolute;
+  right: 0;
+  bottom: -.8rem;
+  display: grid;
+  width: min(42%, 430px);
+  margin: 0;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: rgba(5,10,22,.82);
+  backdrop-filter: blur(14px);
+}
+.track-blueprint__facts div { padding: .85rem; border-left: 1px solid var(--color-border); }
+.track-blueprint__facts div:first-child { border-left: 0; }
+.track-blueprint__facts dt { color: var(--color-muted); font-size: .56rem; letter-spacing: .1em; text-transform: uppercase; }
+.track-blueprint__facts dd { margin: .3rem 0 0; font-size: .78rem; font-weight: 720; }
+
+.detail-section { padding-block: clamp(3.5rem, 8vw, 7rem); border-bottom: 1px solid var(--color-border); }
+.detail-section > h2 { margin-bottom: 2rem; font-size: clamp(2rem, 4vw, 3.5rem); }
+.stat-grid { display: grid; margin: 0; grid-template-columns: repeat(5, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-border); }
+.stat-grid div { padding: clamp(1rem, 3vw, 1.7rem); background: var(--color-surface); }
+.stat-grid dt { color: var(--color-muted); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.stat-grid dd { margin: 0.5rem 0 0; font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 720; }
+.detail__summary { max-width: 72ch; margin: 2rem 0 0; color: var(--color-muted); font-size: 1.05rem; }
+
+.schedule__intro { max-width: 65ch; margin: -1rem 0 2.5rem; color: var(--color-muted); }
+.schedule-days, .schedule-day__sessions { margin: 0; padding: 0; list-style: none; }
+.schedule-days { position: relative; display: grid; gap: 2.25rem; }
+.schedule-days::before { position: absolute; top: 22px; bottom: 22px; left: calc(220px + 1.2rem); width: 2px; content: ""; background: linear-gradient(var(--color-cyan), var(--color-red)); opacity: .45; }
+.schedule-day { display: grid; grid-template-columns: 220px 1fr; gap: 2.4rem; }
+.schedule-day__header { padding-top: .85rem; text-align: right; }
+.schedule-day__header span, .schedule-day__header strong { display: block; }
+.schedule-day__header span { color: var(--color-cyan); font-size: .72rem; font-weight: 780; letter-spacing: .12em; text-transform: uppercase; }
+.schedule-day__header strong { margin-top: .28rem; font-family: var(--font-mono); font-size: 1.15rem; }
+.schedule-day__sessions { display: grid; gap: .65rem; }
+.schedule-session { position: relative; display: grid; min-height: 80px; padding: 1rem 1.25rem; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+.schedule-session__marker { position: absolute; top: 50%; left: -1.58rem; width: 12px; height: 12px; border: 3px solid #071022; border-radius: 50%; background: var(--color-cyan); box-shadow: 0 0 0 1px var(--color-cyan), 0 0 18px rgba(54,214,208,.5); transform: translate(-50%, -50%); }
+.schedule-session__copy { display: grid; }
+.schedule-session__copy small { margin-bottom: .2rem; color: var(--color-muted); font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+.schedule-session__copy strong { font-size: 1.05rem; }
+.schedule-session time { color: var(--color-text); font-family: var(--font-mono); font-size: .86rem; font-variant-numeric: tabular-nums; }
+.schedule-session--race { border-color: rgba(255,48,69,.6); background: linear-gradient(120deg, rgba(255,48,69,.16), rgba(13,23,48,.9)); }
+.schedule-session--race .schedule-session__marker { background: var(--color-red); box-shadow: 0 0 0 1px var(--color-red), 0 0 22px rgba(255,48,69,.65); }
+.schedule-session--race .schedule-session__copy strong { color: #fff; font-size: 1.2rem; }
+
+.favorite-form { margin: 2rem 0; }
+.results .table-scroll { border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .track-stage { min-height: 590px; }
+  .track-blueprint__map { height: 390px; }
+  .track-blueprint__facts { width: 100%; max-width: none; }
+  .track-blueprint__legend { max-width: 100%; bottom: 5.4rem; }
+  .schedule-days::before { left: 11px; }
+  .schedule-day { grid-template-columns: 1fr; gap: .8rem; padding-left: 2rem; }
+  .schedule-day__header { text-align: left; }
+  .schedule-session__marker { left: -1.62rem; }
+}
+@media (max-width: 600px) {
+  .detail__title { font-size: clamp(2.35rem, 14vw, 4.2rem); }
+  .track-stage { min-height: 535px; padding: 5.2rem .8rem 10rem; }
+  .track-blueprint { min-height: 430px; }
+  .track-blueprint__map { height: 300px; transform: rotateZ(-2deg); }
+  .track-blueprint__facts { grid-template-columns: 1fr; bottom: -2.7rem; }
+  .track-blueprint__facts div { display: flex; padding: .45rem .7rem; justify-content: space-between; gap: .75rem; border-top: 1px solid var(--color-border); border-left: 0; }
+  .track-blueprint__facts div:first-child { border-top: 0; }
+  .track-blueprint__facts dd { margin: 0; text-align: right; }
+  .track-blueprint__legend { bottom: 4.9rem; gap: .35rem .75rem; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .schedule-session { grid-template-columns: 1fr; gap: .4rem; }
+}

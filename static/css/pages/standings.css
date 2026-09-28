@@ -1,0 +1,8 @@
+.standings-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; align-items: start; }
+.standings-panel { overflow: hidden; }
+.standings-panel h2 { margin: 0; padding: 1.5rem; font-size: clamp(1.5rem, 3vw, 2.4rem); border-bottom: 1px solid var(--color-border); }
+.standings-panel table small { display: block; color: var(--color-muted); font-size: 0.64rem; }
+.standings-panel .team-mark { width: 60px; height: 38px; }
+.standings-row td:first-child b { color: var(--color-red); font-family: var(--font-mono); }
+.standings-row td:nth-last-child(2) b { color: var(--color-text); font-size: 1.05rem; }
+@media (max-width: 1050px) { .standings-layout { grid-template-columns: 1fr; } }

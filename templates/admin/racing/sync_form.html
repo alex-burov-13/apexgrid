@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Главная</a>
+    &rsaquo; Синхронизация F1
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <h1>Обновить сезон {{ season }}</h1>
+    <p>Календарь, результаты и таблицы чемпионата будут получены из Jolpica F1 API. При ошибке текущая локальная версия останется доступной.</p>
+
+    {% if latest_run %}
+      <fieldset class="module aligned">
+        <h2>Последний запуск</h2>
+        <div class="form-row">
+          <p><strong>{{ latest_run.get_status_display }}</strong> · {{ latest_run.started_at|date:"d.m.Y H:i" }}</p>
+          {% if latest_run.error_message %}<p>{{ latest_run.error_message }}</p>{% endif %}
+        </div>
+      </fieldset>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="submit-row">
+        <input type="submit" value="Запустить синхронизацию" class="default">
+      </div>
+    </form>
+  </div>
+{% endblock %}

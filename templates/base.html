@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ApexGrid — интерактивный календарь Formula 1">
+  <title>{% block title %}ApexGrid{% endblock %}</title>
+  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/calendar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/circuits.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/standings.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}" data-calendar-view="{{ ui_preferences.calendar_view }}" data-timezone="{{ ui_preferences.timezone }}">
+  <a class="skip-link" href="#content">К содержанию</a>
+  <header class="site-header">
+    <div class="shell site-header__inner">
+      <a class="brand" href="{% url 'home' %}" aria-label="ApexGrid — на главную">APEX<span>GRID</span><i aria-hidden="true"></i></a>
+      <nav aria-label="Основная навигация" class="site-nav">
+        <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Главная</a>
+        <a href="{% url 'calendar' %}" {% if request.resolver_match.url_name == 'calendar' %}aria-current="page"{% endif %}>Календарь</a>
+        <a href="{% url 'circuits' %}" {% if request.resolver_match.url_name == 'circuits' %}aria-current="page"{% endif %}>Трассы</a>
+        <a href="{% url 'standings' %}" {% if request.resolver_match.url_name == 'standings' %}aria-current="page"{% endif %}>Чемпионат</a>
+        <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>О проекте</a>
+      </nav>
+      <form class="timezone-control" method="post" action="{% url 'preference-timezone' %}" data-preference-form>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <label for="global-timezone">Время</label>
+        <select id="global-timezone" name="timezone" data-timezone-select>
+          <option value="Europe/Moscow" {% if ui_preferences.timezone == 'Europe/Moscow' %}selected{% endif %}>Москва</option>
+          <option value="UTC" {% if ui_preferences.timezone == 'UTC' %}selected{% endif %}>UTC</option>
+        </select>
+        <button type="submit" class="sr-only">Сохранить часовой пояс</button>
+      </form>
+    </div>
+  </header>
+  <main class="site-main" id="content">{% block content %}{% endblock %}</main>
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <p><strong>APEXGRID / 2026</strong><br>Учебный неофициальный проект. ApexGrid не связан с Formula 1 или FIA.</p>
+      <p>Данные: Jolpica F1 API<br>Геометрия: F1DB · CC BY 4.0</p>
+    </div>
+  </footer>
+  <script type="module" src="{% static 'js/app.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

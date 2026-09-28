@@ -1,0 +1,10 @@
+<svg
+  class="track-map"
+  data-track-fallback
+  viewBox="{{ circuit.geometry.viewBox|join:' ' }}"
+  role="img"
+  aria-label="Схема трассы {{ circuit.name }}"
+>
+  <path class="track-map__shadow" d="{{ circuit.geometry.path }}" fill="none" vector-effect="non-scaling-stroke"></path>
+  <path class="track-map__line" d="{{ circuit.geometry.path }}" fill="none" vector-effect="non-scaling-stroke"></path>
+</svg>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}О ApexGrid{% endblock %}
+{% block body_class %}page-about{% endblock %}
+{% block content %}
+  <article class="prose shell section">
+    <p class="eyebrow">Behind the grid</p>
+    <h1>Об ApexGrid</h1>
+    <p class="prose__lead">ApexGrid — учебный Django-проект: офлайн-календарь Formula 1, интерактивные трассы и таблицы чемпионата.</p>
+    <h2>Как это работает</h2>
+    <p>Django читает данные из локальной SQLite. Jolpica используется только для явного обновления, поэтому основные экраны работают без интернета.</p>
+    <h2>Источники</h2>
+    <p>Календарь и статистика: Jolpica F1 API. Контуры трасс: F1DB, CC BY 4.0.</p>
+    <p>Проект не аффилирован с Formula 1, FIA, команами или трассами.</p>
+  </article>
+{% endblock %}
